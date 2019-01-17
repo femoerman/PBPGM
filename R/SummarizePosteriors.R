@@ -13,7 +13,7 @@ SummarizePosteriors <- function(fulloutput){
     sumoutput <- select(fulloutput, ident)
     sumoutput <- mutate(sumoutput, logr0.mean =NA, logr0.sd=NA, logK.mean=NA, logK.sd=NA, logalfa.mean=NA, logalfa.sd=NA, logd.mean=NA, logd.sd=NA)
     for (i in sumoutput$ident){
-      temp <- filter(fulloutput, name==i)
+      temp <- filter(fulloutput, ident==i)
       sumoutput[which(sumoutput$ident==i), ]$logr0.mean <- mean(log(unlist(temp2$all_r0_dist)))
       sumoutput[which(sumoutput$ident==i), ]$logr0.sd <- sd(log(unlist(temp2$all_r0_dist)))
       sumoutput[which(sumoutput$ident==i), ]$logK.mean <- mean(log(unlist(temp2$all_K_dist)))
