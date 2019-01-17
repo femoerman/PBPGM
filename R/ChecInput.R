@@ -37,11 +37,11 @@ CheckInput <- function(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, d.prior, ds
   else if (!is.numeric(N0.prior) | (!is.integer(N0.prior))& !is.double(N0.prior)){error <- "N0.prior is not a numeric value"}
   else if (!is.numeric(N0sd.prior) | (!is.integer(N0sd.prior))& !is.double(N0sd.prior)){error <- "N0sd.prior is not a numeric value"}
   else if (!is.numeric(sdev.prior) | (!is.integer(sdev.prior))& !is.double(sdev.prior)){error <- "sdev.prior is not a numeric value"}
-  else if (!is.integer(cores) & !is.na(cores)){error <- "cores must be an integer value or nothing"}
-  else if (!is.integer(iter)){error <- "iter must be an integer value"}
-  else if (!is.integer(warmup)){error <- "warmup must be an integer value"}
+  else if (!is.integer(cores) & !is.na(cores)){error <- "cores must be a double type or nothing"}
+  else if (!is.double(iter)){error <- "iter must be a double type"}
+  else if (!is.double(warmup)){error <- "warmup must be a double type"}
   else if (warmup>iter){error <- "warmup must be smaller than iter"}
-  else if (!is.integer(chains)){error <- "chains must be an integer value"}
+  else if (!is.double(chains)){error <- "chains must be a double type"}
   else if (!is.character(graphname)){error <- "graphname must be avalid path (character)"}
   else if (!is.character(outputtype)){error <- "outputtype must be either 'full', 'summary' or 'both' character value"}
   else if (!outputtype  %in% c("both", "full", "summary")){error <- "outputtype must be either 'full', 'summary' or 'both character value"}
