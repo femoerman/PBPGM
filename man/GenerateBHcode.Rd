@@ -26,7 +26,7 @@ GenerateBHcode(K.prior, Ksd.prior, r0.prior, r0sd.prior, d.prior,
 
 \item{dd}{Dataframe with columns for population size data (colname=popsize), time data (colname=time) and unique identifiers for each population (colname=ident)}
 
-\item{r0sd.prior}{Prior value for the standard deviation on death rate (d). Must be on log scale and numeric}
+\item{d.prior}{Prior value for the mean death rate (d). Must be on log scale and numeric}
 }
 \description{
 Generates the stan code to be used for the models, basd on the prior information provided. This allows to only compile one model for all data, saving a lot of computing time.

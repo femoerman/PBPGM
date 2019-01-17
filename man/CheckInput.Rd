@@ -21,6 +21,8 @@ CheckInput(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, d.prior,
 
 \item{d.prior}{Prior value for the mean death rate (d). Must be on log scale and numeric}
 
+\item{dsd.prior}{Prior value for the standard deviation on death rate (d). Must be on log scale and numeric}
+
 \item{N0.prior}{Prior value for the mean starting population size (N0). Must be on log scale and numeric}
 
 \item{N0sd.prior}{Prior value for the standard deviation on starting population size (N0). Must be on log scale and numeric}
@@ -38,8 +40,6 @@ CheckInput(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, d.prior,
 \item{graphname}{Path with filename to save the figure showing the fits of the data with the posterior predictions. Defaults to NA, in which the plot will not be saved}
 
 \item{outputtype}{Type of output that will be returned. Must be "summary", "full" or "both". summary return the summarised posteriors (mean and sd on log scale), full returns dataframe containing lists of all the posterior samples, both returns a list with both the summary and full output. Defaults to summary}
-
-\item{r0sd.prior}{Prior value for the standard deviation on death rate (d). Must be on log scale and numeric}
 }
 \description{
 Checks the user input variables, and creates an error if it encounters a problem for fitting the models

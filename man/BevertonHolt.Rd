@@ -40,7 +40,7 @@ BevertonHolt(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, d.prior,
 
 \item{outputtype}{Type of output that will be returned. Must be "summary", "full" or "both". summary return the summarised posteriors (mean and sd on log scale), full returns dataframe containing lists of all the posterior samples, both returns a list with both the summary and full output. Defaults to summary}
 
-\item{r0sd.prior}{Prior value for the standard deviation on death rate (d). Must be on log scale and numeric}
+\item{d.prior}{Prior value for the mean death rate (d). Must be on log scale and numeric}
 }
 \description{
 Performs all steps in order to fit the BeretonHolt population growth model, show the figures, and return the asked for output

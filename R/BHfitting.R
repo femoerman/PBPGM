@@ -44,6 +44,12 @@ BHfitting <- function(BH.code, dd, K.prior, r0.prior, d.prior, N0.prior, sdev.pr
   # compile models
   s_model_BH = stan_model(model_code=BH.code)
 
+  #reset priors to non-log scale
+  r0.prior <- exp(r0.prior)
+  K.prior <- exp(K.prior)
+  d.prior <- exp(d.prior)
+  N0.prior <- exp(N0.prior)
+
 
   ###############################################################################
   # global counter var
