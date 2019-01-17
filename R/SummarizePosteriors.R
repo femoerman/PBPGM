@@ -14,14 +14,14 @@ SummarizePosteriors <- function(fulloutput){
     sumoutput <- mutate(sumoutput, logr0.mean =NA, logr0.sd=NA, logK.mean=NA, logK.sd=NA, logalfa.mean=NA, logalfa.sd=NA, logd.mean=NA, logd.sd=NA)
     for (i in sumoutput$ident){
       temp <- filter(fulloutput, ident==i)
-      sumoutput[which(sumoutput$ident==i), ]$logr0.mean <- mean(log(unlist(temp2$all_r0_dist)))
-      sumoutput[which(sumoutput$ident==i), ]$logr0.sd <- sd(log(unlist(temp2$all_r0_dist)))
-      sumoutput[which(sumoutput$ident==i), ]$logK.mean <- mean(log(unlist(temp2$all_K_dist)))
-      sumoutput[which(sumoutput$ident==i), ]$logK.sd <- sd(log(unlist(temp2$all_K_dist)))
-      sumoutput[which(sumoutput$ident==i), ]$logalfa.mean <- mean(log(unlist(temp2$all_alfa_dist)))
-      sumoutput[which(sumoutput$ident==i), ]$logalfa.sd <- sd(log(unlist(temp2$all_alfa_dist)))
-      sumoutput[which(sumoutput$ident==i), ]$logd.mean <- mean(log(unlist(temp2$all_d_dist)))
-      sumoutput[which(sumoutput$ident==i), ]$logd.sd <- sd(log(unlist(temp2$all_d_dist)))
+      sumoutput[which(sumoutput$ident==i), ]$logr0.mean <- mean(log(unlist(temp$all_r0_dist)))
+      sumoutput[which(sumoutput$ident==i), ]$logr0.sd <- sd(log(unlist(temp$all_r0_dist)))
+      sumoutput[which(sumoutput$ident==i), ]$logK.mean <- mean(log(unlist(temp$all_K_dist)))
+      sumoutput[which(sumoutput$ident==i), ]$logK.sd <- sd(log(unlist(temp$all_K_dist)))
+      sumoutput[which(sumoutput$ident==i), ]$logalfa.mean <- mean(log(unlist(temp$all_alfa_dist)))
+      sumoutput[which(sumoutput$ident==i), ]$logalfa.sd <- sd(log(unlist(temp$all_alfa_dist)))
+      sumoutput[which(sumoutput$ident==i), ]$logd.mean <- mean(log(unlist(temp$all_d_dist)))
+      sumoutput[which(sumoutput$ident==i), ]$logd.sd <- sd(log(unlist(temp$all_d_dist)))
     }
   }
   return(sumoutput)
