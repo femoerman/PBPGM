@@ -28,21 +28,21 @@ CheckInput <- function(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, d.prior, ds
   else if(!"time" %in% names(dd)){ error<- "Variable time missing in dataframe"}
   else if(!"popsize" %in% names(dd)){ error<- "Variable time missing in dataframe"}
   else if(!"time" %in% names(dd)){ error<- "Variable time missing in dataframe"}
-  else if (!is.numeric(K.prior) | (!is.integer(K.prior))& !is.double(K.prior)){error <- "K.prior is not a numeric value"}
-  else if (!is.numeric(Ksd.prior) | (!is.integer(Ksd.prior))& !is.double(Ksd.prior)){error <- "Ksd.prior is not a numeric value"}
-  else if (!is.numeric(r0.prior) | (!is.integer(r0.prior))& !is.double(r0.prior)){error <- "r0.prior is not a numeric value"}
-  else if (!is.numeric(r0sd.prior) | (!is.integer(r0sd.prior))& !is.double(r0sd.prior)){error <- "r0sd.prior is not a numeric value"}
-  else if (!is.numeric(d.prior) | (!is.integer(d.prior))& !is.double(d.prior)){error <- "d.prior is not a numeric value"}
-  else if (!is.numeric(dsd.prior) | (!is.integer(dsd.prior))& !is.double(dsd.prior)){error <- "dsd.prior is not a numeric value"}
-  else if (!is.numeric(N0.prior) | (!is.integer(N0.prior))& !is.double(N0.prior)){error <- "N0.prior is not a numeric value"}
-  else if (!is.numeric(N0sd.prior) | (!is.integer(N0sd.prior))& !is.double(N0sd.prior)){error <- "N0sd.prior is not a numeric value"}
-  else if (!is.numeric(sdev.prior) | (!is.integer(sdev.prior))& !is.double(sdev.prior)){error <- "sdev.prior is not a numeric value"}
+  else if (!is.numeric(K.prior) & (!is.integer(K.prior))& !is.double(K.prior)){error <- "K.prior is not a numeric value"}
+  else if (!is.numeric(Ksd.prior) & (!is.integer(Ksd.prior))& !is.double(Ksd.prior)){error <- "Ksd.prior is not a numeric value"}
+  else if (!is.numeric(r0.prior) & (!is.integer(r0.prior))& !is.double(r0.prior)){error <- "r0.prior is not a numeric value"}
+  else if (!is.numeric(r0sd.prior) & (!is.integer(r0sd.prior))& !is.double(r0sd.prior)){error <- "r0sd.prior is not a numeric value"}
+  else if (!is.numeric(d.prior) & (!is.integer(d.prior))& !is.double(d.prior)){error <- "d.prior is not a numeric value"}
+  else if (!is.numeric(dsd.prior) & (!is.integer(dsd.prior))& !is.double(dsd.prior)){error <- "dsd.prior is not a numeric value"}
+  else if (!is.numeric(N0.prior) & (!is.integer(N0.prior))& !is.double(N0.prior)){error <- "N0.prior is not a numeric value"}
+  else if (!is.numeric(N0sd.prior) & (!is.integer(N0sd.prior))& !is.double(N0sd.prior)){error <- "N0sd.prior is not a numeric value"}
+  else if (!is.numeric(sdev.prior) & (!is.integer(sdev.prior))& !is.double(sdev.prior)){error <- "sdev.prior is not a numeric value"}
   else if (!is.integer(cores) & !is.na(cores)){error <- "cores must be a double type or nothing"}
   else if (!is.double(iter)){error <- "iter must be a double type"}
   else if (!is.double(warmup)){error <- "warmup must be a double type"}
   else if (warmup>iter){error <- "warmup must be smaller than iter"}
   else if (!is.double(chains)){error <- "chains must be a double type"}
-  else if (!is.character(graphname)){error <- "graphname must be avalid path (character)"}
+  else if (!is.character(graphname & !is.na(graphnale))){error <- "graphname must be avalid path (character) or nothing"}
   else if (!is.character(outputtype)){error <- "outputtype must be either 'full', 'summary' or 'both' character value"}
   else if (!outputtype  %in% c("both", "full", "summary")){error <- "outputtype must be either 'full', 'summary' or 'both character value"}
   return(error)
