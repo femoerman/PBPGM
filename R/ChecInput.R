@@ -37,7 +37,7 @@ CheckInput <- function(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, d.prior, ds
   else if (!is.numeric(N0.prior) | (!is.integer(N0.prior))& !is.double(N0.prior)){error <- "N0.prior is not a numeric value"}
   else if (!is.numeric(N0sd.prior) | (!is.integer(N0sd.prior))& !is.double(N0sd.prior)){error <- "N0sd.prior is not a numeric value"}
   else if (!is.numeric(sdev.prior) | (!is.integer(sdev.prior))& !is.double(sdev.prior)){error <- "sdev.prior is not a numeric value"}
-  else if (!is.integer(cores)){error <- "cores must be an integer value"}
+  else if (!is.integer(cores) & !is.na(cores)){error <- "cores must be an integer value or nothing"}
   else if (!is.integer(iter)){error <- "iter must be an integer value"}
   else if (!is.integer(warmup)){error <- "warmup must be an integer value"}
   else if (warmup>iter){error <- "warmup must be smaller than iter"}
