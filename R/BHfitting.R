@@ -13,7 +13,7 @@
 #' @param N0.prior Prior value for the mean starting population size (N0). Must be on log scale and numeric
 #' @param N0sd.prior Prior value for the standard deviation on starting population size (N0). Must be on log scale and numeric
 #' @param sdev.prior Prior value for the standard deviation for the model fitting. Must be numeric. Defaults to 1.
-#' @param cores Optional argument detailing the number of cores to use. Must be integer. Defaults to NA, in which case all available cores - 1 will be used
+#' @param cores.to.use Available cores to do the bayesian models
 #' @param iter Number of iterations to run for the model, defaults to 1e4. Must be integer
 #' @param warmup Number of iterations to run warmup. Defaults to 1e3. Must be integer and smaller than warmup
 #' @param chains Number of chains to run for each fit. Must be integer. Defaults to 1
@@ -21,7 +21,7 @@
 #' @export
 #' @examples
 #' BHfitting()
-BHfitting <- function(BH.code, dd, K.prior, r0.prior, d.prior, N0.prior, sdev.prior, cores, iter, warmup, chains){
+BHfitting <- function(BH.code, dd, K.prior, r0.prior, d.prior, N0.prior, sdev.prior, cores.to.use, iter, warmup, chains){
   # functions
 
   # rK model as ODE
