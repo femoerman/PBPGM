@@ -7,7 +7,7 @@
 #' @param r0.prior Prior value for the mean intrinsic rate of growth (r0). Must be on log scale and numeric
 #' @param r0sd.prior Prior value for the standard deviation on intrinsic rate of growth (r0). Must be on log scale and numeric
 #' @param d.prior Prior value for the mean death rate (d). Must be on log scale and numeric
-#' @param r0sd.prior Prior value for the standard deviation on death rate (d). Must be on log scale and numeric
+#' @param dsd.prior Prior value for the standard deviation on death rate (d). Must be on log scale and numeric
 #' @param N0.prior Prior value for the mean starting population size (N0). Must be on log scale and numeric
 #' @param N0sd.prior Prior value for the standard deviation on starting population size (N0). Must be on log scale and numeric
 #' @param sdev.prior Prior value for the standard deviation for the model fitting. Must be numeric. Defaults to 1.
@@ -28,15 +28,15 @@ CheckInput <- function(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, d.prior, ds
   else if(!"time" %in% names(dd)){ error<- "Variable time missing in dataframe"}
   else if(!"popsize" %in% names(dd)){ error<- "Variable time missing in dataframe"}
   else if(!"time" %in% names(dd)){ error<- "Variable time missing in dataframe"}
-  else if (!is.numeric(K.prior) | !is.integer(K.prior)){error <- "K.prior is not a numeric value"}
-  else if (!is.numeric(Ksd.prior) | !is.integer(Ksd.prior)){error <- "Ksd.prior is not a numeric value"}
-  else if (!is.numeric(r0.prior) | !is.integer(r0.prior)){error <- "r0.prior is not a numeric value"}
-  else if (!is.numeric(r0sd.prior) | !is.integer(r0sd.prior)){error <- "r0sd.prior is not a numeric value"}
-  else if (!is.numeric(d.prior) | !is.integer(d.prior)){error <- "d.prior is not a numeric value"}
-  else if (!is.numeric(dsd.prior) | !is.integer(dsd.prior)){error <- "dsd.prior is not a numeric value"}
-  else if (!is.numeric(N0.prior) | !is.integer(N0.prior)){error <- "N0.prior is not a numeric value"}
-  else if (!is.numeric(N0sd.prior) | !is.integer(N0sd.prior)){error <- "N0sd.prior is not a numeric value"}
-  else if (!is.numeric(sdev.prior) | !is.integer(sdev.prior)){error <- "sdev.prior is not a numeric value"}
+  else if (!is.numeric(K.prior) & !is.integer(K.prior)){error <- "K.prior is not a numeric value"}
+  else if (!is.numeric(Ksd.prior) & !is.integer(Ksd.prior)){error <- "Ksd.prior is not a numeric value"}
+  else if (!is.numeric(r0.prior) & !is.integer(r0.prior)){error <- "r0.prior is not a numeric value"}
+  else if (!is.numeric(r0sd.prior) & !is.integer(r0sd.prior)){error <- "r0sd.prior is not a numeric value"}
+  else if (!is.numeric(d.prior) & !is.integer(d.prior)){error <- "d.prior is not a numeric value"}
+  else if (!is.numeric(dsd.prior) & !is.integer(dsd.prior)){error <- "dsd.prior is not a numeric value"}
+  else if (!is.numeric(N0.prior) & !is.integer(N0.prior)){error <- "N0.prior is not a numeric value"}
+  else if (!is.numeric(N0sd.prior) & !is.integer(N0sd.prior)){error <- "N0sd.prior is not a numeric value"}
+  else if (!is.numeric(sdev.prior) & !is.integer(sdev.prior)){error <- "sdev.prior is not a numeric value"}
   else if (!is.integer(cores)){error <- "cores must be an integer value"}
   else if (!is.integer(iter)){error <- "iter must be an integer value"}
   else if (!is.integer(warmup)){error <- "warmup must be an integer value"}

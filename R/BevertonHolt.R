@@ -8,7 +8,7 @@
 #' @param r0.prior Prior value for the mean intrinsic rate of growth (r0). Must be on log scale and numeric
 #' @param r0sd.prior Prior value for the standard deviation on intrinsic rate of growth (r0). Must be on log scale and numeric
 #' @param d.prior Prior value for the mean death rate (d). Must be on log scale and numeric
-#' @param r0sd.prior Prior value for the standard deviation on death rate (d). Must be on log scale and numeric
+#' @param d.prior Prior value for the mean death rate (d). Must be on log scale and numeric
 #' @param N0.prior Prior value for the mean starting population size (N0). Must be on log scale and numeric
 #' @param N0sd.prior Prior value for the standard deviation on starting population size (N0). Must be on log scale and numeric
 #' @param sdev.prior Prior value for the standard deviation for the model fitting. Must be numeric. Defaults to 1.
