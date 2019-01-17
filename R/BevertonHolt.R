@@ -20,6 +20,12 @@
 #' @param outputtype Type of output that will be returned. Must be "summary", "full" or "both". summary return the summarised posteriors (mean and sd on log scale), full returns dataframe containing lists of all the posterior samples, both returns a list with both the summary and full output. Defaults to summary
 #' @keywords Beverton Holt Bayesian parallel model fitting
 #' @export
+#' @import tidyverse
+#' @import rstan
+#' @import loo
+#' @import deSolve
+#' @import coda
+#' @import parallel
 #' @examples
 #' BevertonHolt()
 BevertonHolt <- function(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, d.prior, dsd.prior, N0.prior, N0sd.prior, sdev.prior=1,
