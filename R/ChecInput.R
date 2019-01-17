@@ -42,7 +42,7 @@ CheckInput <- function(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, d.prior, ds
   else if (!is.double(warmup)){error <- "warmup must be a double type"}
   else if (warmup>iter){error <- "warmup must be smaller than iter"}
   else if (!is.double(chains)){error <- "chains must be a double type"}
-  else if (!is.character(graphname & !is.na(graphname))){error <- "graphname must be avalid path (character) or nothing"}
+  else if (!is.character(graphname) & !is.na(graphname)){error <- "graphname must be avalid path (character) or nothing"}
   else if (!is.character(outputtype)){error <- "outputtype must be either 'full', 'summary' or 'both' character value"}
   else if (!outputtype  %in% c("both", "full", "summary")){error <- "outputtype must be either 'full', 'summary' or 'both character value"}
   return(error)
