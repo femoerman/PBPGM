@@ -13,7 +13,7 @@ PlotFits <- function(fulloutput, dd, filename){
   #1) determine dimensions of output graph
   all <- length(unique(fulloutput$ident))
   height=ceiling(sqrt(all))
-  width=ceiling(all/width)
+  width=ceiling(all/height)
   frames <- width*height
 
   #2) general plot settings
