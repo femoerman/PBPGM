@@ -10,13 +10,13 @@
 #' @examples
 #' ReturnOutput()
 ReturnOutput <- function(outputtype, fulloutput, sumoutput){
-  if(output=="summary"){
+  if(outputtype=="summary"){
     return(sumoutput)
   }
-  else if (output=="full"){
+  else if (outputtype=="full"){
     return(fulloutput)
   }
-  else if (output=="both"){
+  else if (outputtype=="both"){
     return(list(sumoutput=sumoutput, fulloutput=fulloutput))
   }
   else {
