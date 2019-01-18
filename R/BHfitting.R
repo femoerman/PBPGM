@@ -112,7 +112,8 @@ BHfitting <- function(BH.code, dd, K.prior, r0.prior, d.prior, N0.prior, sdev.pr
 
       # convert to mcmc object and plot posterior distributions
       samples_rK <- mcmc.list(lapply(1:ncol(fit_BH), function(x) mcmc(as.array(fit_BH)[,1,][,names(init_BH[[1]])])))
-      #plot(samples_rK)
+      #get summary statistics
+      sumstats <- summary(fit_BH)$summary
 
       # save posterios distributions of parameters of interest
       act_r0_dist <- exp(as.numeric(samples_rK[[1]][,"log_r"]))
@@ -123,8 +124,14 @@ BHfitting <- function(BH.code, dd, K.prior, r0.prior, d.prior, N0.prior, sdev.pr
 
       # save in list
       output$all_r0_dist <- list(act_r0_dist)
+      output$logr0_N_eff <- sumstats["log_r", "n_eff"]
+      output$logr0_Rhat <- sumstats["log_r", "Rhat"]
       output$all_d_dist <- list(act_d_dist)
+      output$logd_N_eff <- sumstats["log_d", "n_eff"]
+      output$logd_Rhat <- sumstats["log_d", "Rhat"]
       output$all_K_dist <- list(act_K_dist)
+      output$logK_N_eff <- sumstats["log_K", "n_eff"]
+      output$logK_Rhat <- sumstats["log_K", "Rhat"]
       output$all_alpha_dist <- list(act_alpha_dist)
       ###############################################################################
       # get predictions
@@ -166,8 +173,14 @@ BHfitting <- function(BH.code, dd, K.prior, r0.prior, d.prior, N0.prior, sdev.pr
       output$Nsim <- list(Nsim)
     }else{
       output$all_r0_dist <- NA
+      output$logr0_N_eff <- NA
+      output$logr0_Rhat <- NA
       output$all_d_dist <- NA
+      output$logd_N_eff <- NA
+      output$logd_Rhat <- NA
       output$all_K_dist <- NA
+      output$logK_N_eff <- NA
+      output$logK_Rhat <- NA
       output$all_alpha_dist <- NA
       output$act_densities <- list(act_densities)
       output$act_times <- list(act_times)
