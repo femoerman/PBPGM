@@ -30,10 +30,11 @@
 #' BevertonHolt()
 BevertonHolt <- function(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, d.prior, dsd.prior, N0.prior, N0sd.prior, sdev.prior=1,
                          cores=NA, iter=1e4, warmup=1e3, chains=1, graphname=NA, outputtype="summary"){
-  #0) Check input, raise error if input is unsuitable.
+  #0) Check input, raise error if input is unsuitable and load packages
   error <- CheckInput(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, d.prior, dsd.prior, N0.prior, N0sd.prior, sdev.prior,
                       cores, iter, warmup, chains, graphname, outputtype)
   if (!is.na(error)){stop(error)}
+  LoadPackages()
 
   #1) Generate the stan code to run Bayesian population growth model
   #) One needs to input prior information for all the parameters

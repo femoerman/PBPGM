@@ -28,14 +28,6 @@
 #' @examples
 #' BHfitting()
 BHfitting <- function(BH.code, dd, K.prior, r0.prior, d.prior, N0.prior, sdev.prior, cores.to.use, iter, warmup, chains){
-  # load libraries
-  library(rstan)
-  library(loo)
-  library(deSolve)
-  library(coda)
-  library(parallel)
-  library(tidyverse)
-
   # rK model as ODE
   ode.model_BH = function(t,N,p){
     with(as.list(p),{
