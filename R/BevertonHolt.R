@@ -52,5 +52,5 @@ BevertonHolt <- function(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, d.prior, 
   PlotFits(fulloutput, dd, filename=graphname)
 
   #6) Return output (summary, full, both)
-  ReturnOutput(outputtype, fulloutput=fulloutput, sumoutput=sumoutput)
+  return(ReturnOutput(outputtype, fulloutput=fulloutput, sumoutput=sumoutput))
 }
