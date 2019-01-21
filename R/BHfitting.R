@@ -18,6 +18,12 @@
 #' @param warmup Number of iterations to run warmup. Defaults to 1e3. Must be integer and smaller than warmup
 #' @param chains Number of chains to run for each fit. Must be integer. Defaults to 1
 #' @keywords Beverton Holt Bayesian parallel model fitting
+#' @import tidyverse
+#' @import rstan
+#' @import loo
+#' @import deSolve
+#' @import coda
+#' @import parallel
 #' @export
 #' @examples
 #' BHfitting()
