@@ -39,23 +39,23 @@ rK <- function(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, N0.prior, N0sd.prio
   library(coda)
   library(parallel)
   library(tidyverse)
-  
+
   #1) Generate the stan code to run Bayesian population growth model
   #) One needs to input prior information for all the parameters
   rK.code <- GeneraterKcode(K.prior, Ksd.prior, r0.prior, r0sd.prior, N0.prior, N0sd.prior, sdev.prior=sdev.prior)
-  
+
   #2) Determine the number of cores that is available to run the code
   cores.to.use <- GetCores(cores)
-  
+
   #3) Run the Bayesian model, parallellized for the different populations/cultures
-  fulloutput <- rKfitting(rK.code=rK.code, dd=dd, K.prior, r0.prior, N0.prior, sdev.prior=sdev.prior, cores.to.use, iter, warmup, chains)
-  
+  fulloutput <- rKfitting(rK.code=rK.code, dd=dd, K.prior=K.prior, r0.prior=r0.prior, N0.prior, sdev.prior=sdev.prior, cores.to.use, iter, warmup, chains)
+
   #4) Summarize the data to get parameter distributions (mean and sd) on a log scale
   sumoutput <- SummarizePosteriors(fulloutput, modelname)
-  
+
   #5) Generate plot to check fits of data
   PlotFits(fulloutput, dd, filename=graphname)
-  
+
   #6) Return output (summary, full, both)
   return(ReturnOutput(outputtype, fulloutput=fulloutput, sumoutput=sumoutput))
 }
