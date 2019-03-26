@@ -25,7 +25,7 @@
 #' @export
 #' @examples
 #' rKfitting()
-rKfitting <- function(rK.code, dd, K.prior, r0.prior, d.prior, N0.prior, sdev.prior, cores.to.use, iter, warmup, chains){
+rKfitting <- function(rK.code, dd, K.prior, r0.prior, N0.prior, sdev.prior, cores.to.use, iter, warmup, chains){
   # rK model as ODE
   ode.model_rK = function(t,N,p){
     with(as.list(p),{

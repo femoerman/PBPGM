@@ -48,7 +48,7 @@ rK <- function(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, N0.prior, N0sd.prio
   cores.to.use <- GetCores(cores)
 
   #3) Run the Bayesian model, parallellized for the different populations/cultures
-  fulloutput <- rKfitting(rK.code=rK.code, dd=dd, K.prior=K.prior, r0.prior=r0.prior, N0.prior, sdev.prior=sdev.prior, cores.to.use, iter, warmup, chains)
+  fulloutput <- rKfitting(rK.code=rK.code, dd=dd, K.prior=K.prior, r0.prior=r0.prior, N0.prior=N0.prior, sdev.prior=sdev.prior, cores.to.use, iter, warmup, chains)
 
   #4) Summarize the data to get parameter distributions (mean and sd) on a log scale
   sumoutput <- SummarizePosteriors(fulloutput, modelname)
