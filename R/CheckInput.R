@@ -22,7 +22,7 @@
 #' @examples
 #' CheckInput()
 CheckInput <- function(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, d.prior, dsd.prior, N0.prior, N0sd.prior, sdev.prior,
-           cores, iter, warmup, chains, graphname, outputtype){
+           cores, iter, warmup, chains, graphname, outputtype, modelname){
   error <- NA
   if(!is.data.frame(dd)){error <- "Faulty data input, data must be a data frame with the variables time, popsize and ident"}
   else if(!"time" %in% names(dd)){ error<- "Variable time missing in dataframe"}
@@ -32,8 +32,8 @@ CheckInput <- function(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, d.prior, ds
   else if (!is.numeric(Ksd.prior) & (!is.integer(Ksd.prior))& !is.double(Ksd.prior)){error <- "Ksd.prior is not a numeric value"}
   else if (!is.numeric(r0.prior) & (!is.integer(r0.prior))& !is.double(r0.prior)){error <- "r0.prior is not a numeric value"}
   else if (!is.numeric(r0sd.prior) & (!is.integer(r0sd.prior))& !is.double(r0sd.prior)){error <- "r0sd.prior is not a numeric value"}
-  else if (!is.numeric(d.prior) & (!is.integer(d.prior))& !is.double(d.prior)){error <- "d.prior is not a numeric value"}
-  else if (!is.numeric(dsd.prior) & (!is.integer(dsd.prior))& !is.double(dsd.prior)){error <- "dsd.prior is not a numeric value"}
+  else if (modelname == "BH" & !is.numeric(d.prior) & (!is.integer(d.prior))& !is.double(d.prior)){error <- "d.prior is not a numeric value"}
+  else if (modelname == "BH" & !is.numeric(dsd.prior) & (!is.integer(dsd.prior))& !is.double(dsd.prior)){error <- "dsd.prior is not a numeric value"}
   else if (!is.numeric(N0.prior) & (!is.integer(N0.prior))& !is.double(N0.prior)){error <- "N0.prior is not a numeric value"}
   else if (!is.numeric(N0sd.prior) & (!is.integer(N0sd.prior))& !is.double(N0sd.prior)){error <- "N0sd.prior is not a numeric value"}
   else if (!is.numeric(sdev.prior) & (!is.integer(sdev.prior))& !is.double(sdev.prior)){error <- "sdev.prior is not a numeric value"}

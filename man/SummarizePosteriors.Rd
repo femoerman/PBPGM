@@ -4,7 +4,7 @@
 \alias{SummarizePosteriors}
 \title{SumarizePosteriors function}
 \usage{
-SummarizePosteriors(fulloutput)
+SummarizePosteriors(fulloutput, modelname)
 }
 \arguments{
 \item{fulloutput}{Output generated in the BHfitting function, containing all the posterior data from the model fitting}

@@ -19,7 +19,8 @@ Returns the requested output to the user
 \examples{
 ReturnOutput()
 }
-\keyword{Beverton}
-\keyword{Holt}
+\keyword{Model}
+\keyword{Population}
+\keyword{growth}
 \keyword{output}
 \keyword{return}

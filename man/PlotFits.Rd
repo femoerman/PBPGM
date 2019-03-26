@@ -7,7 +7,7 @@
 PlotFits(fulloutput, dd, filename)
 }
 \arguments{
-\item{fulloutput}{Output generated in the BHfitting function, containing all the posterior data from the model fitting}
+\item{fulloutput}{Output generated in the fitting function, containing all the posterior data from the model fitting}
 
 \item{dd}{Dataframe with columns for population size data (colname=popsize), time data (colname=time) and unique identifiers for each population (colname=ident)}
 
@@ -19,8 +19,8 @@ Plots the posterior predictions on the actual data so model fit can be checked v
 \examples{
 PlotFits()
 }
-\keyword{Beverton}
-\keyword{Holt}
+\keyword{Population}
 \keyword{fit}
+\keyword{growth}
 \keyword{model}
 \keyword{plot}

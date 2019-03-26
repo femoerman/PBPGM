@@ -2,10 +2,10 @@
 #'
 #' Plots the posterior predictions on the actual data so model fit can be checked visually
 #'
-#' @param fulloutput Output generated in the BHfitting function, containing all the posterior data from the model fitting
+#' @param fulloutput Output generated in the fitting function, containing all the posterior data from the model fitting
 #' @param dd Dataframe with columns for population size data (colname=popsize), time data (colname=time) and unique identifiers for each population (colname=ident)
 #' @param graphname Path with filename to save the figure showing the fits of the data with the posterior predictions. Defaults to NA, in which the plot will not be saved
-#' @keywords Beverton Holt plot model fit
+#' @keywords Population growth model plot model fit
 #' @export
 #' @examples
 #' PlotFits()
