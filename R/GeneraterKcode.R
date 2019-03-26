@@ -24,7 +24,7 @@ GeneraterKcode <- function(K.prior, Ksd.prior, r0.prior, r0sd.prior, N0.prior, N
     return dNdt;
     }
   }
-  
+
   data{
     int n;
     real log_N0;
@@ -32,46 +32,46 @@ GeneraterKcode <- function(K.prior, Ksd.prior, r0.prior, r0sd.prior, N0.prior, N
     real t0;
     real t[n];
   }
-  
-  transformed data { 
+
+  transformed data {
     // not used here
     real x_r[0];
     int x_i[0];
   }
-  
+
   parameters{
-    real<lower=0> r;
-    real<lower=0> K;
-    real<lower=0> N0sim;
-    real<lower=0> sdev;
+  real log_r;
+  real log_K;
+  real log_N0sim;
+  real<lower=0> sdev;
   }
 
 transformed parameters{
   // all of this was in the model section previously
   // I moved it here to be able to get waic because Nsim needs to be accessible in "generated quantities {}"
-  
+
   real p[2];
   real Nsim[n,1]; // simulated values, matrix. dim1 = time, dim2 = dim_ODE = 1
   real N0sim_dummy[1]; // just a dummy because the ODE solver requires real[] instead of real
-  
+
   // parameters for integrator
   p[1] = exp(log_r);
   p[2] = exp(log_K);
   N0sim_dummy[1] = exp(log_N0sim);  // see above
-  
+
   // integrate ODE
   Nsim = integrate_ode_rk45(odemodel,N0sim_dummy,t0,t,p,x_r,x_i);
 }
-  
+
   model{
   // priors
   // note: it can be VERY helpful to estimate parameters on logscale,
   // especially if they have different orders of magnitude. here it works on regular scale, though.'
   part2 <- paste("log_r ~ normal(", r0.prior, ", ", r0sd.prior,");", sep="")
   part3 <- paste("log_K ~ normal(", K.prior, ", ", Ksd.prior,");", sep="")
-  part5 <- paste("log_N0sim ~ normal(", N0.prior, ", ", N0sd.prior,");", sep="")
-  part6 <- paste("sdev ~ cauchy(0, ", sdev.prior,");", sep="")
-  part7 <-
+  part4 <- paste("log_N0sim ~ normal(", N0.prior, ", ", N0sd.prior,");", sep="")
+  part5 <- paste("sdev ~ cauchy(0, ", sdev.prior,");", sep="")
+  part6 <-
   '
   // likelihood, normal (maybe lognormal helpful)
   log_N0 ~ normal(log_N0sim,sdev);
@@ -79,7 +79,7 @@ transformed parameters{
   log_N[i] ~ normal(log(Nsim[i,1]),sdev);
   }
   }
-  
+
   // cacluate log lik to get waic
   // from loo R package description
   generated quantities {
@@ -90,6 +90,6 @@ transformed parameters{
   }
   '
 
-  rK.code <- paste(part1, part2, part3, part4, part5, part6, part7, sep="\n")
+  rK.code <- paste(part1, part2, part3, part4, part5, part6, sep="\n")
   return(rK.code)
 }

@@ -33,7 +33,7 @@ rKfitting <- function(rK.code, dd, K.prior, r0.prior, d.prior, N0.prior, sdev.pr
       return(list(dNdt))
     })
   }
-  
+
   ###############################################################################
   # stan options
   chains = chains
@@ -42,61 +42,61 @@ rKfitting <- function(rK.code, dd, K.prior, r0.prior, d.prior, N0.prior, sdev.pr
   iter   =  iter
   warmup =  warmup
   thin   =     1
-  
+
   # compile models
   s_model_rK = stan_model(model_code=rK.code)
-  
+
   #reset priors to non-log scale
   r0.prior <- exp(r0.prior)
   K.prior <- exp(K.prior)
   N0.prior <- exp(N0.prior)
-  
-  
+
+
   ###############################################################################
   # global counter var
   cnt <- 0
-  
+
   ###############################################################################
   # loop over blocks and replicates
   parbayes <- function(act_rep, dd){
     cnt <- act_rep
-    
+
     ########################################
     # get the subset
     act_name <- unique(dd$ident)[act_rep]
     act_subset <- which(dd$ident == unique(dd$ident)[act_rep])
-    
+
     # get the densities and current time points
     act_densities <- dd$popsize[act_subset]
     act_times <- dd$time[act_subset]
-    
+
     act_times <- act_times[which(act_densities != 0)]
     act_densities <- act_densities[which(act_densities != 0)]
-    
+
     #Get output dataframe
     output <- data.frame(row.names = c(act_name))
-    
+
     if(length(act_densities) >= 3){
-      
+
       #plot(act_densities ~ act_times)
-      
+
       ###############################################################################
       # rK fitting
-      
+
       # create data object for rstan
       data_rK = list(n = length(act_times)-1,
                      log_N0 = log(act_densities[1]),
                      log_N  = log(act_densities[2:length(act_times)]),
                      t0    = act_times[1],
                      t     = act_times[2:length(act_times)])
-      
+
       # initial values for rK fitting
       init_rK=rep(list(list(log_r=log(r0.prior),
                             log_K = log(K.prior),
                             log_N0sim=log(N0.prior),
                             sdev=sdev.prior))
                   ,chains)
-      
+
       # do the rK fit
       fit_rK = sampling(s_model_rK,
                         data=data_rK,
@@ -106,21 +106,21 @@ rKfitting <- function(rK.code, dd, K.prior, r0.prior, d.prior, N0.prior, sdev.pr
                         chains=chains,
                         init=init_rK
       )
-      
+
       # check model
       print(fit_rK)
-      
+
       # convert to mcmc object and plot posterior distributions
       samples_rK <- mcmc.list(lapply(1:ncol(fit_rK), function(x) mcmc(as.array(fit_rK)[,1,][,names(init_rK[[1]])])))
       #get summary statistics
       sumstats <- summary(fit_rK)$summary
-      
+
       # save posterios distributions of parameters of interest
       act_r0_dist <- exp(as.numeric(samples_rK[[1]][,"log_r"]))
       act_K_dist <- exp(as.numeric(samples_rK[[1]][,"log_K"]))
       act_alpha_dist <- exp(as.numeric(samples_rK[[1]][,"log_r"]))/exp(as.numeric(samples_rK[[1]][,"log_K"]))
       act_N0sim_dist <- exp(as.numeric(samples_rK[[1]][,"log_N0sim"]))
-      
+
       # save in list
       output$all_r0_dist <- list(act_r0_dist)
       output$logr0_N_eff <- sumstats["log_r", "n_eff"]
@@ -133,13 +133,13 @@ rKfitting <- function(rK.code, dd, K.prior, r0.prior, d.prior, N0.prior, sdev.pr
       # get predictions
       # set time interval for prediction
       timessim <- seq(min(act_times),max(act_times),len=100)
-      
+
       # get median model
       Nsim = as.data.frame(lsoda(y=median(act_N0sim_dist),
                                  times=timessim,
                                  func=ode.model_rK,
-                                 parms=c(median(act_r0_dist), median(act_d_dist), median(act_K_dist))))[,2]
-      
+                                 parms=c(median(act_r0_dist), median(act_K_dist))))[,2]
+
       # help function for prediction of CI
       hlp_pred <- function(act_parms_no){
         as.data.frame(lsoda(y=act_N0sim_dist[act_parms_no],
@@ -147,18 +147,18 @@ rKfitting <- function(rK.code, dd, K.prior, r0.prior, d.prior, N0.prior, sdev.pr
                             func=ode.model_rK,
                             parms=exp(as.numeric(samples_rK[[1]][act_parms_no,c("log_r","log_K")]))))[,2]
       }
-      
+
       # predict distribution at every time point
       pred_pop_dyn <- sapply(1:dim(samples_rK[[1]])[1],hlp_pred)
-      
+
       # function for extracting CI and median of prediction
       get_quantile <- function(act_t_no){
         quantile(pred_pop_dyn[act_t_no,],p=c(0.025,0.5,0.975),na.rm=T)
       }
-      
+
       # get prediction
       model_predictions <- sapply(1:length(timessim),get_quantile)
-      
+
       ###############################################################################
       output$act_densities <- list(act_densities)
       output$act_times <- list(act_times)
@@ -183,13 +183,13 @@ rKfitting <- function(rK.code, dd, K.prior, r0.prior, d.prior, N0.prior, sdev.pr
       output$timesim <- NA
       output$Nsim <- NA
     }
-    
+
     output$ident <- act_name
     output$cnt <- cnt
-    
+
     return(output)
   }
-  
+
   #Run parallelised Bayesian model
   cl <- makeCluster(cores.to.use)
   tempoutput <- mclapply(1:length(unique(dd$ident)), parbayes, dd, mc.cores = cores.to.use)
@@ -197,7 +197,7 @@ rKfitting <- function(rK.code, dd, K.prior, r0.prior, d.prior, N0.prior, sdev.pr
   fulloutput <- data.frame(tempoutput[1])
   for (elem in 2:length(tempoutput)){
     fulloutput <- rbind(fulloutput, data.frame(tempoutput[elem]))
-    
+
   }
   fulloutput <- arrange(fulloutput, ident)
   return(fulloutput)

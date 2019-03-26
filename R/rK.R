@@ -42,7 +42,7 @@ rK <- function(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, N0.prior, N0sd.prio
   
   #1) Generate the stan code to run Bayesian population growth model
   #) One needs to input prior information for all the parameters
-  rK.code <- GenerateBHcode(K.prior, Ksd.prior, r0.prior, r0sd.prior, N0.prior, N0sd.prior, sdev.prior=sdev.prior)
+  rK.code <- GeneraterKcode(K.prior, Ksd.prior, r0.prior, r0sd.prior, N0.prior, N0sd.prior, sdev.prior=sdev.prior)
   
   #2) Determine the number of cores that is available to run the code
   cores.to.use <- GetCores(cores)
