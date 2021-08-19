@@ -1,13 +1,20 @@
 Package: PBPGM
 Title: Parallellised Bayesian Population Growth Models
-Version: 0.0.0.9000
+Version: 0.0.1.0000
 Authors@R: 
     person(given = "Felix",
            family = "Moerman",
            role = c("aut", "cre"),
            email = "felix.moerman@hotmail.com")
-Description: This package aims at doing population growth model fitting in a Bayesian framework, whilst simultaneously saving computing time by parallellising the whole process. Currently, only support is provided for Beverton-Holt population growth models, however, further support for other models will be implemented in the near future.
+Description: This package aims at doing population growth model fitting in a Bayesian framework, whilst simultaneously saving computing time by parallellising the whole process. Currently, only support is provided for Beverton-Holt population growth models and r-K population growth models, however, further support for other models will be implemented in the near future.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
+Imports:
+    rstan
+    loo
+    deSolve
+    coda
+    parallel
+    tidyverse
