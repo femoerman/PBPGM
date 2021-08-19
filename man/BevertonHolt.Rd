@@ -4,10 +4,24 @@
 \alias{BevertonHolt}
 \title{BevertonHolt function}
 \usage{
-BevertonHolt(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, d.prior,
-  dsd.prior, N0.prior, N0sd.prior, sdev.prior = 1, cores = NA,
-  iter = 10000, warmup = 1000, chains = 1, graphname = NA,
-  outputtype = "summary")
+BevertonHolt(
+  dd,
+  K.prior,
+  Ksd.prior,
+  r0.prior,
+  r0sd.prior,
+  d.prior,
+  dsd.prior,
+  N0.prior,
+  N0sd.prior,
+  sdev.prior = 1,
+  cores = NA,
+  iter = 10000,
+  warmup = 1000,
+  chains = 1,
+  graphname = NA,
+  outputtype = "summary"
+)
 }
 \arguments{
 \item{dd}{Dataframe with columns for population size data (colname=popsize), time data (colname=time) and unique identifiers for each population (colname=ident)}
@@ -39,8 +53,6 @@ BevertonHolt(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, d.prior,
 \item{graphname}{Path with filename to save the figure showing the fits of the data with the posterior predictions. Defaults to NA, in which the plot will not be saved}
 
 \item{outputtype}{Type of output that will be returned. Must be "summary", "full" or "both". summary return the summarised posteriors (mean and sd on log scale), full returns dataframe containing lists of all the posterior samples, both returns a list with both the summary and full output. Defaults to summary}
-
-\item{d.prior}{Prior value for the mean death rate (d). Must be on log scale and numeric}
 }
 \description{
 Performs all steps in order to fit the BeretonHolt population growth model, show the figures, and return the asked for output

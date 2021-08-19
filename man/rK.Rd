@@ -4,9 +4,22 @@
 \alias{rK}
 \title{r-K function}
 \usage{
-rK(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, N0.prior, N0sd.prior,
-  sdev.prior = 1, cores = NA, iter = 10000, warmup = 1000,
-  chains = 1, graphname = NA, outputtype = "summary")
+rK(
+  dd,
+  K.prior,
+  Ksd.prior,
+  r0.prior,
+  r0sd.prior,
+  N0.prior,
+  N0sd.prior,
+  sdev.prior = 1,
+  cores = NA,
+  iter = 10000,
+  warmup = 1000,
+  chains = 1,
+  graphname = NA,
+  outputtype = "summary"
+)
 }
 \arguments{
 \item{dd}{Dataframe with columns for population size data (colname=popsize), time data (colname=time) and unique identifiers for each population (colname=ident)}

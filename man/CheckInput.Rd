@@ -4,9 +4,25 @@
 \alias{CheckInput}
 \title{CheckInput function}
 \usage{
-CheckInput(dd, K.prior, Ksd.prior, r0.prior, r0sd.prior, d.prior,
-  dsd.prior, N0.prior, N0sd.prior, sdev.prior, cores, iter, warmup, chains,
-  graphname, outputtype, modelname)
+CheckInput(
+  dd,
+  K.prior,
+  Ksd.prior,
+  r0.prior,
+  r0sd.prior,
+  d.prior,
+  dsd.prior,
+  N0.prior,
+  N0sd.prior,
+  sdev.prior,
+  cores,
+  iter,
+  warmup,
+  chains,
+  graphname,
+  outputtype,
+  modelname
+)
 }
 \arguments{
 \item{dd}{Dataframe with columns for population size data (colname=popsize), time data (colname=time) and unique identifiers for each population (colname=ident)}

@@ -4,8 +4,15 @@
 \alias{GeneraterKcode}
 \title{GeneraterKcode function}
 \usage{
-GeneraterKcode(K.prior, Ksd.prior, r0.prior, r0sd.prior, N0.prior,
-  N0sd.prior, sdev.prior)
+GeneraterKcode(
+  K.prior,
+  Ksd.prior,
+  r0.prior,
+  r0sd.prior,
+  N0.prior,
+  N0sd.prior,
+  sdev.prior
+)
 }
 \arguments{
 \item{K.prior}{Prior value for the mean carrying capacity (K). Must be on log scale and numeric}
